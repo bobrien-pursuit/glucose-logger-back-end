@@ -4,15 +4,14 @@ CREATE DATABASE entries_dev;
 \c entries_dev;
 
 CREATE TABLE "entries" (
-  "id" int PRIMARY KEY,
-  "date" date NOT NULL,
-  "time" time NOT NULL,
-  "last_meal" text,
-  "carbs" int,
-  "calories" int,
-  "fat" int,
-  "fiber" int,
-  "glucose_gDl" int,
-  "a1c" float,
-  "a1c_time" timestamp
+  "id" SERIAL PRIMARY KEY,
+  "date" DATE NOT NULL DEFAULT CURRENT_DATE,
+  "time" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "last_meal" TEXT,
+  "carbs" INTEGER,
+  "calories" INTEGER,
+  "fat" INTEGER,
+  "fiber" INTEGER,
+  "glucose_gdl" INTEGER,
+  "a1c" FLOAT
 );
