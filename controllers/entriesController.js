@@ -54,7 +54,7 @@ entries.delete("/:id", async (req, res) => {
 
     deletedEntry.id ? 
     res.status(200).json(deletedEntry) : 
-    res.status(404).json(error: "Entry not found.");
+    res.status(404).json({error: "Entry not found."});
 
 });
 
