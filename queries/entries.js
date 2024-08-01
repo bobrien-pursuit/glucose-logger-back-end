@@ -11,7 +11,7 @@ const getAllEntries = async () => {
 }
 
 // SHOW
-const getEntry = async (id)=> {
+const getEntry = async (id) => {
     try {
         const singleEntry = await db.one('SELECT * FROM entries WHERE id=$1', id);
         return singleEntry;
@@ -22,19 +22,10 @@ const getEntry = async (id)=> {
 
 // CREATE
 
-const createEntry = async (entry)=> {
+const createEntry = async (entry) => {
     try {
         const newEntry = await db.one(
-        `INSERT INTO entries (
-            last_meal, 
-            carbs, 
-            calories, 
-            fat, 
-            fiber, 
-            glucose_gdl, 
-            a1c 
-        )
-        VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`, 
+        "INSERT INTO entries ( last_meal, carbs, calories, fat, fiber, glucose_gdl, a1c) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *", 
             [ 
                 entry.last_meal, 
                 entry.carbs, 
