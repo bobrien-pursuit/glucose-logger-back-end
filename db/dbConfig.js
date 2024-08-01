@@ -6,10 +6,10 @@ const cn = {
     port: process.env.PG_PORT,
     database: process.env.PG_DATABASE,
     user: process.env.PG_USER,
-    pwssword: process.env.PG_PASSWORD,
+    password: process.env.PG_PASSWORD,
 };
 
-const db = php(cn);
+const db = pgp(cn);
 
 db.connect()
     .then((cn) => {
@@ -21,4 +21,4 @@ db.connect()
     })
     .catch((error) => console.log("database connection error", error));
 
-    module.exports = db;
+module.exports = db;

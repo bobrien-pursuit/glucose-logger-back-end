@@ -1,9 +1,6 @@
 const express = require("express");
 const entries = express.Router();
 
-// localhost:4001/entries/<id>
-entries.use(`/:id`);
-
 // QUERIES
 const {
     getAllEntries,
