@@ -26,26 +26,25 @@ const createEntry = async (entry) => {
     try {
         const newEntry = await db.one(
         `INSERT INTO entries 
-        ( 
-            last_meal, 
-            carbs, 
-            calories, 
-            fat, 
-            fiber, 
-            glucose_gdl, 
-            a1c
-        ) 
-        VALUES 
-        ($1, $2, $3, $4, $5, $6, $7) RETURNING *`, 
-            [ 
-                entry.last_meal, 
-                entry.carbs, 
-                entry.calories, 
-                entry.fat, 
-                entry.fiber, 
-                entry.glucose_gdl, 
-                entry.a1c 
-            ]
+            ( 
+                last_meal, 
+                carbs, 
+                calories, 
+                fat, 
+                fiber, 
+                glucose_gdl, 
+                a1c 
+            ) 
+            VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`, 
+                [ 
+                    entry.last_meal, 
+                    entry.carbs, 
+                    entry.calories, 
+                    entry.fat, 
+                    entry.fiber, 
+                    entry.glucose_gdl, 
+                    entry.a1c 
+                ]
         );
         return newEntry;
     }   catch (error) {
@@ -79,9 +78,11 @@ const updateEntry = async (id, entry) => {
                 entry.fat,
                 entry.fiber,
                 entry.glucose_gdl,
-                entry.a1c
+                entry.a1c,
+                id
             ]
         );
+        return updatedEntry;
 
     }   catch (error) {
         return error;
@@ -96,6 +97,7 @@ const deleteEntry = async (id) => {
             `DELETE FROM entries WHERE id=$1 RETURNING *`,
             id
         );
+        return deletedEntry;
 
     }   catch (error) {
         return error;
