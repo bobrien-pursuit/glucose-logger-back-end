@@ -3,7 +3,7 @@ const db = require("../db/dbConfig.js");
 // INDEX
 const getAllEntries = async () => {
     try {
-        const allEntries = await db.any('SELECT * FROM entries');
+        const allEntries = await db.any('SELECT date, time, last_meal, carbs, calories, fat, fiber, glucose_gdl, a1c FROM entries');
         return allEntries;
     }   catch (error) {
         return error;
@@ -59,17 +59,21 @@ const updateEntry = async (id, entry) => {
     try {
         const updatedEntry = await db.one(
         `UPDATE entries SET
-            date=$1,
-            time=$2,
-            last_meal=$3,
-            carbs=$4,
-            calories=$5,
-            fat=$6,
-            fiber=$7,
-            glucose_gdl=$8,
-            a1c=$9 
-        WHERE id=$10 RETURNING *`,
+            date_surrogate=$1,
+            time_surrogate=$2,
+            date=$3,
+            time=$4,
+            last_meal=$5,
+            carbs=$6,
+            calories=$7,
+            fat=$8,
+            fiber=$9,
+            glucose_gdl=$10,
+            a1c=$11 
+        WHERE id=$12 RETURNING *`,
             [
+                entry.date_surrogate,
+                entry.time_surrogate,
                 entry.date,
                 entry.time,
                 entry.last_meal,
