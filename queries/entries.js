@@ -13,7 +13,7 @@ const getAllEntries = async () => {
 // SHOW
 const getEntry = async (id) => {
     try {
-        const singleEntry = await db.one('SELECT * FROM entries WHERE id=$1', id);
+        const singleEntry = await db.one(`SELECT TO_CHAR(date_surrogate, \'yyyy-MM-dd\'), TO_CHAR(time_surrogate, \'HH24:mm:ss\'), last_meal, carbs, calories, fat, fiber, glucose_gdl, a1c FROM entries WHERE id=$1`, id);
         return singleEntry;
     }   catch (error) {
         return error;
