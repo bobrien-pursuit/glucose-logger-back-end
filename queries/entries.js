@@ -3,7 +3,7 @@ const db = require("../db/dbConfig.js");
 // INDEX
 const getAllEntries = async () => {
     try {
-        const allEntries = await db.any(`SELECT TO_CHAR(date_surrogate, \'yyyy-MM-dd\'), TO_CHAR(time_surrogate, \'HH24:mm:ss\'), last_meal, carbs, calories, fat, fiber, glucose_gdl, a1c FROM entries`);
+        const allEntries = await db.any(`SELECT TO_CHAR(date_surrogate, \'yyyy-MM-dd\') AS date_surrogate, TO_CHAR(time_surrogate, \'HH24:mm:ss\') AS time_surrogate, last_meal, carbs, calories, fat, fiber, glucose_gdl, a1c FROM entries`);
         return allEntries;
     }   catch (error) {
         return error;
