@@ -3,7 +3,7 @@ const db = require("../db/dbConfig.js");
 // INDEX
 const getAllEntries = async () => {
     try {
-        const allEntries = await db.any(`SELECT TO_CHAR(date_surrogate, \'yyyy-MM-dd\') AS date_surrogate, TO_CHAR(time_surrogate, \'HH24:mm:ss\') AS time_surrogate, last_meal, carbs, calories, fat, fiber, glucose_gdl, a1c FROM entries`);
+        const allEntries = await db.any(`SELECT id, TO_CHAR(date_surrogate, \'yyyy-MM-dd\') AS date_surrogate, TO_CHAR(time_surrogate, \'HH24:mm:ss\') AS time_surrogate, last_meal, carbs, calories, fat, fiber, glucose_gdl, a1c FROM entries`);
         return allEntries;
     }   catch (error) {
         return error;
@@ -13,7 +13,7 @@ const getAllEntries = async () => {
 // SHOW
 const getEntry = async (id) => {
     try {
-        const singleEntry = await db.one(`SELECT TO_CHAR(date_surrogate, \'yyyy-MM-dd\'), TO_CHAR(time_surrogate, \'HH24:mm:ss\'), last_meal, carbs, calories, fat, fiber, glucose_gdl, a1c FROM entries WHERE id=$1`, id);
+        const singleEntry = await db.one(`SELECT id, TO_CHAR(date_surrogate, \'yyyy-MM-dd\'), TO_CHAR(time_surrogate, \'HH24:mm:ss\'), last_meal, carbs, calories, fat, fiber, glucose_gdl, a1c FROM entries WHERE id=$1`, id);
         return singleEntry;
     }   catch (error) {
         return error;
